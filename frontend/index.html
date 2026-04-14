@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FreshCart — Premium online grocery shopping. Browse fresh produce, dairy, bakery, and more with fast delivery.">
+  <title>FreshCart — Fresh Groceries Delivered</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo" id="logo-link">
+        <span class="logo-icon">🛒</span>
+        Fresh<span>Cart</span>
+      </a>
+
+      <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          class="search-input"
+          id="search-input"
+          placeholder="Search groceries..."
+          autocomplete="off"
+        >
+      </div>
+
+      <nav class="nav-actions">
+        <button class="nav-btn" id="orders-btn" title="My Orders">
+          📦 <span>Orders</span>
+        </button>
+        <button class="nav-btn cart-btn" id="cart-toggle-btn" title="Shopping Cart">
+          🛒 <span>Cart</span>
+          <span class="cart-badge" id="cart-badge" style="display: none;">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero-section">
+      <div class="container hero-content">
+        <div class="hero-badge">🌿 Farm Fresh • Delivered Fast</div>
+        <h1>Groceries made <em>simple</em>,<br>delivered <em>fresh</em></h1>
+        <p>Browse our curated collection of premium groceries. From farm-fresh produce to artisan bakery — everything you need, delivered to your door.</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value" id="stat-products">24+</div>
+            <div class="hero-stat-label">Products</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">6</div>
+            <div class="hero-stat-label">Categories</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">Free</div>
+            <div class="hero-stat-label">Delivery $35+</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Shop by Category</div>
+            <div class="section-subtitle">Find exactly what you're looking for</div>
+          </div>
+        </div>
+        <div class="categories-grid" id="categories-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products-section">
+      <div class="container">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <div class="result-count" id="result-count">Loading...</div>
+          </div>
+          <select class="sort-select" id="sort-select">
+            <option value="">Sort by</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="rating">Top Rated</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </div>
+        <div class="products-grid" id="products-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkout Page (hidden by default) -->
+    <section class="checkout-page" id="checkout-page">
+      <div class="container">
+        <div style="margin-bottom: var(--space-xl);">
+          <button class="nav-btn" id="back-to-shop" style="margin-bottom: var(--space-md);">
+            ← Back to Shop
+          </button>
+          <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 800;">Checkout</h1>
+          <p style="color: var(--text-secondary);">Complete your order details below</p>
+        </div>
+        <div class="checkout-grid">
+          <!-- Form -->
+          <div>
+            <div class="checkout-form-section" style="margin-bottom: var(--space-lg);">
+              <h2>📍 Delivery Information</h2>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="checkout-name">Full Name *</label>
+                  <input type="text" class="form-input" id="checkout-name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="checkout-email">Email *</label>
+                  <input type="email" class="form-input" id="checkout-email" placeholder="john@example.com" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="checkout-phone">Phone</label>
+                  <input type="tel" class="form-input" id="checkout-phone" placeholder="+1 (555) 123-4567">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="checkout-zip">ZIP Code *</label>
+                  <input type="text" class="form-input" id="checkout-zip" placeholder="10001" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="checkout-address">Street Address *</label>
+                <input type="text" class="form-input" id="checkout-address" placeholder="123 Main Street, Apt 4B" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="checkout-city">City *</label>
+                <input type="text" class="form-input" id="checkout-city" placeholder="New York" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="checkout-notes">Delivery Notes</label>
+                <textarea class="form-input" id="checkout-notes" placeholder="Any special instructions for delivery..."></textarea>
+              </div>
+            </div>
+
+            <div class="checkout-form-section">
+              <h2>💳 Payment Method</h2>
+              <div class="payment-methods" id="payment-methods">
+                <label class="payment-option selected" data-method="card">
+                  <input type="radio" name="payment" value="card" checked>
+                  💳 Credit Card
+                </label>
+                <label class="payment-option" data-method="debit">
+                  <input type="radio" name="payment" value="debit">
+                  🏦 Debit Card
+                </label>
+                <label class="payment-option" data-method="wallet">
+                  <input type="radio" name="payment" value="wallet">
+                  📱 Digital Wallet
+                </label>
+                <label class="payment-option" data-method="cod">
+                  <input type="radio" name="payment" value="cod">
+                  💵 Cash on Delivery
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="checkout-summary" id="checkout-summary">
+            <h3>🧾 Order Summary</h3>
+            <div id="checkout-items-list">
+              <!-- Populated by JS -->
+            </div>
+            <div class="checkout-divider"></div>
+            <div class="cart-summary-row">
+              <span>Subtotal</span>
+              <span id="checkout-subtotal">$0.00</span>
+            </div>
+            <div class="cart-summary-row">
+              <span>Tax (8%)</span>
+              <span id="checkout-tax">$0.00</span>
+            </div>
+            <div class="cart-summary-row">
+              <span>Delivery</span>
+              <span id="checkout-delivery">$0.00</span>
+            </div>
+            <div class="cart-summary-row total">
+              <span>Total</span>
+              <span id="checkout-total">$0.00</span>
+            </div>
+            <button class="place-order-btn" id="place-order-btn">
+              🛒 Place Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Confirmation (hidden by default) -->
+    <section class="order-confirmation" id="order-confirmation">
+      <div class="container">
+        <div class="order-success-icon">✅</div>
+        <h2>Order Placed Successfully!</h2>
+        <div class="order-id" id="confirmation-order-id"></div>
+        <p>Thank you for your order! We're preparing your groceries for delivery.</p>
+        <div class="order-details-card" id="confirmation-details">
+          <!-- Populated by JS -->
+        </div>
+        <button class="continue-shopping-btn" id="continue-shopping-btn">
+          🛒 Continue Shopping
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <div class="cart-title">
+        🛒 Your Cart <span class="cart-count" id="cart-count">0</span>
+      </div>
+      <button class="cart-close" id="cart-close">✕</button>
+    </div>
+    <div class="cart-body" id="cart-body">
+      <div class="cart-empty" id="cart-empty">
+        <div class="cart-empty-icon">🛒</div>
+        <h3>Your cart is empty</h3>
+        <p>Add some fresh groceries to get started!</p>
+      </div>
+      <div id="cart-items-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display: none;">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Tax (8%)</span>
+        <span id="cart-tax">$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Delivery</span>
+        <span id="cart-delivery">$0.00</span>
+      </div>
+      <div id="delivery-progress-container"></div>
+      <div class="cart-summary-row total">
+        <span>Total</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <button class="checkout-btn" id="checkout-btn">
+        Proceed to Checkout →
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===== TOAST CONTAINER ===== -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="container footer-inner">
+      <div class="footer-text">© 2026 FreshCart. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Privacy</a>
+        <a href="#" class="footer-link">Terms</a>
+        <a href="#" class="footer-link">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
